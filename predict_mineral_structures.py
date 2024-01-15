@@ -13,7 +13,8 @@ gibbs_dict = {
     'enstatite': -349.394,
     'alpha-quartz': -204.646,
     'forsterite': -491.938,
-    'fayalite': -329.668
+    'fayalite': -329.668,
+    'troilite': -24.219,
 }
 
 """
@@ -35,7 +36,6 @@ struct = Structure.from_spacegroup("Pbca", Lattice.orthorhombic(18.2, 8.87, 5.20
 eform = model.predict_structure(struct)
 print(f"The predicted formation energy for MgSiO3 is {to_kj_mol(float(eform.numpy()))} kj/mol.")
 print(f"The formation energy for MgSiO3 from literature is {gibbs_dict['enstatite']} kj/mol.")
-
 
 """
 Olivine (Forsterite)
@@ -74,7 +74,7 @@ print(f"The formation energy for Fe2SiO4 from literature is {gibbs_dict['forster
 """
 Alpha-Quartz
 """
-struct = Structure.from_spacegroup(152, Lattice.trigonal(4.9137, 4.9137, 5.4047),
+struct = Structure.from_spacegroup(152, Lattice.hexagonal(4.9137, 5.4047),
                                    ["Si", "O"],
                                    [[.4133, .2672, .1188],
                                     [.4697, 0.0, 0.0],
@@ -82,3 +82,16 @@ struct = Structure.from_spacegroup(152, Lattice.trigonal(4.9137, 4.9137, 5.4047)
 eform = model.predict_structure(struct)
 print(f"The predicted formation energy for SiO2 is {to_kj_mol(float(eform.numpy()))} kj/mol.")
 print(f"The formation energy for SiO2 from literature is {gibbs_dict['alpha-quartz']} kj/mol.")
+
+"""
+Troilite
+"""
+
+struct = Structure.from_spacegroup(194, Lattice.hexagonal(5.958, 11.74),
+                                   ["Fe", "S"],
+                                   [[0, 0, 0.5],
+                                    [.667, .333, .75],
+                                    ])
+eform = model.predict_structure(struct)
+print(f"The predicted formation energy for FeS is {to_kj_mol(float(eform.numpy()))} kj/mol.")
+print(f"The formation energy for FeS from literature is {gibbs_dict['troilite']} kj/mol.")
