@@ -1,0 +1,5 @@
+torch
+dgl
+dglgo
+matgl~=0.9.1
+pymatgen~=2023.12.18
